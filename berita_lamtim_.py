@@ -287,3 +287,34 @@ plt.figure(figsize=(10, 10))
 plt.pie(kategori_counts, labels=kategori_counts.index, autopct='%1.1f%%', startangle=140)
 plt.title('Distribusi Kategori Berita')
 plt.show()
+
+# === PIE CHART Distribusi Total Kategori Berita ===
+import matplotlib.pyplot as plt
+
+kategori_counts = df['Kategori'].value_counts()
+
+plt.figure(figsize=(8, 8))
+plt.pie(kategori_counts, labels=kategori_counts.index, autopct='%1.1f%%', startangle=140)
+plt.title('Distribusi Kategori Berita Secara Keseluruhan')
+plt.axis('equal')
+plt.tight_layout()
+plt.show()
+
+# === BAR CHART Distribusi Kategori Berita per Bulan ===
+import numpy as np
+
+plt.figure(figsize=(12, 8))
+bar_width = 0.12
+index = np.arange(len(df_persentase))
+
+for i, column in enumerate(df_persentase.columns):
+    plt.bar(index + i * bar_width, df_persentase[column], bar_width, label=column)
+
+plt.title('Persentase Kategori Berita per Bulan')
+plt.xlabel('Bulan')
+plt.ylabel('Persentase (%)')
+plt.xticks(index + bar_width * (len(df_persentase.columns) - 1) / 2, df_persentase.index, rotation=45)
+plt.legend(title='Kategori')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.tight_layout()
+plt.show()
